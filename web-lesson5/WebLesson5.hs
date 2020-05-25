@@ -217,9 +217,12 @@ staticResponseServer response =
 ------------------------------------------
 
 helloResponse_withMoreTypes :: Response
-helloResponse_withMoreTypes =
-
-    _exercise_1
+helloResponse_withMoreTypes = Response
+  (StatusLine http_1_1 status200 reasonOK)
+  [ plainTextAsciiHeader
+  , contentLengthHeader 7
+  ]
+  (Just $ asciiMessageBody "Hello!\n")
 
 ------------------------------------------
 

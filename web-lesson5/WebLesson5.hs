@@ -220,7 +220,7 @@ helloResponse_withMoreTypes :: Response
 helloResponse_withMoreTypes = Response
   (StatusLine http_1_1 status200 reasonOK)
   [ plainTextAsciiHeader
-  , contentLengthHeader 7
+  , contentLengthHeader (7 :: Int)
   ]
   (Just $ asciiMessageBody "Hello!\n")
 

@@ -235,6 +235,9 @@ status200 = StatusCode D2 D0 D0
 reasonOK :: ReasonPhrase
 reasonOK = ReasonPhrase (ASCII.pack "OK")
 
+statusLine200 :: StatusLine
+statusLine200 = StatusLine http_1_1 status200 reasonOK
+
 contentLengthHeader :: Integral a => a -> HeaderField
 contentLengthHeader contentLength =
     HeaderField
@@ -256,6 +259,9 @@ asciiMessageBody x = MessageBody (LASCII.pack x)
 ------------------------------------------
 
 helloResponse_moreConveniently :: Response
-helloResponse_moreConveniently =
-
-    _exercise_2
+helloResponse_moreConveniently = Response
+  statusLine200
+  [ plainTextAsciiHeader
+  , contentLengthHeader (7 :: Int)
+  ]
+  (Just $ asciiMessageBody "Hello!\n")

@@ -482,4 +482,7 @@ sendAll_slow socket lbs =
 
 infiniteResponse :: Response
 infiniteResponse =
-    _exercise
+  Response
+        (StatusLine http_1_1 status200 reasonOK)
+        [ plainTextAsciiHeader ]
+        (Just (MessageBody (LBS.cycle $ LASCII.pack "It's a good day to be alive! 😃\n")))
